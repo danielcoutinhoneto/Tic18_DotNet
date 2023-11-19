@@ -1,0 +1,15 @@
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/bin/Debug/net7.0/ListaTarefas
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/bin/Debug/net7.0/ListaTarefas.deps.json
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/bin/Debug/net7.0/ListaTarefas.runtimeconfig.json
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/bin/Debug/net7.0/ListaTarefas.dll
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/bin/Debug/net7.0/ListaTarefas.pdb
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.csproj.AssemblyReference.cache
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.GeneratedMSBuildEditorConfig.editorconfig
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.AssemblyInfoInputs.cache
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.AssemblyInfo.cs
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.csproj.CoreCompileInputs.cache
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.dll
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/refint/ListaTarefas.dll
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.pdb
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ListaTarefas.genruntimeconfig.cache
+/home/daniel/Documentos/Tic18_DotNet/ListaTarefas/obj/Debug/net7.0/ref/ListaTarefas.dll

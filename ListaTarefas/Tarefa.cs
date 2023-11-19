@@ -59,12 +59,12 @@ public static class Item
 
 public static void Listar()
     {
-        Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", "Título", "Descrição", "Data de Vencimento", "Concluída");
+        Console.WriteLine("{0,-30} {1,-120} {2,-20} {3,-10}", "Título", "Descrição", "Data de Vencimento", "Concluída");
         Console.WriteLine(new string('-', 185));
 
        for (int i = 0; i < tarefas.Count; i++)
         {
-            Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", tarefas[i].titulo, tarefas[i].descricao, tarefas[i].dataVencimento.ToString("dd/MM/yyyy"), tarefas[i].concluida ? "Sim" : "Não");
+            Console.WriteLine("{0,-30} {1,-120} {2,-20} {3,-10}", tarefas[i].titulo, tarefas[i].descricao, tarefas[i].dataVencimento.ToString("dd/MM/yyyy"), tarefas[i].concluida ? "Sim" : "Não");
         }
     }
 }

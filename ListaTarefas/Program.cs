@@ -40,33 +40,46 @@ namespace listaTarefas
                     Console.WriteLine("Escolha uma opção:");
                     Console.WriteLine("1. Marcar como concluída");
                     Console.WriteLine("2. Excluir tarefa");
+                    Console.WriteLine("3. Sair");
                     Console.Write("Opção: ");
 
-                       if (int.TryParse(Console.ReadLine(), out int escolha))
+                    if (int.TryParse(Console.ReadLine(), out int escolha))
+                    {
+                        switch (escolha)
                         {
-                            Console.Write("Informe o índice da tarefa: ");
-                            if (int.TryParse(Console.ReadLine(), out int indice))
-                            {
-                                switch (escolha)
+                            case 1:
+                                Console.Write("Informe o índice da tarefa a ser marcada como concluída: ");
+                                if (int.TryParse(Console.ReadLine(), out int indice))
                                 {
-                                    case 1:
-                                        Item.MarcarComoConcluida(indice);
-                                        break;
-
-                                    case 2:
-                                        Item.Excluir(indice);
-                                        break;
-
-                                    default:
-                                        Console.WriteLine("Opção inválida.");
-                                        break;
+                                    Item.MarcarComoConcluida(indice);
+                                    Item.Listar(); // Exibe a lista atualizada
                                 }
+                                else
+                                {
+                                    Console.WriteLine("Índice inválido.");
+                                }
+                                break;
 
-                                Item.Listar(); // Exibe a lista atualizada
-                            }
-                            else
-                            {
-                                Console.WriteLine("Índice inválido.");
+                            case 2:
+                                Console.Write("Informe o índice da tarefa a ser excluída: ");
+                                if (int.TryParse(Console.ReadLine(), out int indiceExclusao))
+                                {
+                                    Item.Excluir(indiceExclusao);
+                                    Item.Listar(); // Exibe a lista atualizada
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Índice inválido.");
+                                }
+                                break;
+
+                            case 3:
+                                Console.WriteLine("Saindo do programa.");
+                                break;
+
+                            default:
+                                Console.WriteLine("Opção inválida.");
+                                break;
                             }
                         }
                         else
@@ -77,10 +90,10 @@ namespace listaTarefas
 
                     default:
                         Console.WriteLine("O valor inserido é inválido!");
-                        break;
+                    break;
                 }
-            } while (opcao == "s");
+                
+            } while (opcao == "s" || opcao == "n");
         }
     }
 }
-
