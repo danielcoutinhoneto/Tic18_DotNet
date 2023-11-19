@@ -40,24 +40,42 @@ public static class Item
         }
     }
 
+    public static void ListarConcluidas()
+    {
+        Console.WriteLine("Tarefas Concluídas:");
+        Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", "Título", "Descrição", "Data de Vencimento", "Concluída");
+        Console.WriteLine(new string('-', 185));
+
+        for (int i = 0; i < tarefas.Count; i++)
+       {
+            if (tarefas[i].concluida)
+            {
+                Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", tarefas[i].titulo, tarefas[i].descricao, tarefas[i].dataVencimento.ToString("dd/MM/yyyy"), tarefas[i].concluida ? "Sim" : "Não");
+            }
+        }
+    }
+
+    public static void ListarNaoConcluidas()
+        {
+            Console.WriteLine("Tarefas Não Concluídas:");
+            Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", "Título", "Descrição", "Data de Vencimento", "Concluída");
+            Console.WriteLine(new string('-', 185));
+
+            for (int i = 0; i < tarefas.Count; i++)
+            {
+                if (!tarefas[i].concluida)
+            {
+                Console.WriteLine("{0,-20} {1,-120} {2,-20} {3,-10}", tarefas[i].titulo, tarefas[i].descricao, tarefas[i].dataVencimento.ToString("dd/MM/yyyy"), tarefas[i].concluida ? "Sim" : "Não");
+            }
+        }
+    }
+
     private static bool VerificarIndiceValido(int indice)
     {
         return indice >= 0 && indice < tarefas.Count;
     }
 
-//     public static void Listar() {
-//         Console.WriteLine("{0,-20} {1,-120} {2,-20}", "Título", "Descrição", "Data de Vencimento");
-//         Console.WriteLine(new string('-', 165)); 
-
-//         foreach(ItemTarefa t in tarefas) {
-//             Console.WriteLine("{0,-20} {1,-120} {2,-20}", t.titulo, t.descricao, t.dataVencimento.ToString("dd/MM/yyyy"));
-//         }
-
-//     }
-
-// }
-
-public static void Listar()
+    public static void Listar()
     {
         Console.WriteLine("{0,-30} {1,-120} {2,-20} {3,-10}", "Título", "Descrição", "Data de Vencimento", "Concluída");
         Console.WriteLine(new string('-', 185));
