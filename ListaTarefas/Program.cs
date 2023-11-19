@@ -10,90 +10,88 @@ namespace listaTarefas
             string opcao;
 
             Console.WriteLine("[CADASTRO DE TAREFAS]");
-            do {
+            Console.WriteLine("=====================");
+            Console.WriteLine();
+            do
+            {
                 ItemTarefa item = new ItemTarefa();
 
-                Console.WriteLine("Informe o título da tarefa:");
-                item.titulo = Console.ReadLine();
-
-                Console.WriteLine("Informe descrição da tarefa:");
-                item.descricao = Console.ReadLine();
-
-                Console.WriteLine("Qual a data de vencimento da tarefa?");
-                item.dataVencimento = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("1. Cadastrar tarefa");
+                Console.WriteLine("2. Listar tarefas");
+                Console.WriteLine("3. Marcar como concluída");
+                Console.WriteLine("4. Excluir tarefa");
+                Console.WriteLine("5. Sair");
+                Console.WriteLine();
                 
-                Item.Inserir(item);
+                Console.Write("Opção: ");
 
-                Console.WriteLine("Deseja adicionar mais tarefas: [s/n]");
-                opcao = Console.ReadLine();
-
-                switch(opcao) {
-                    case "s":
-                    Console.WriteLine("Adicione uma nova tarefa!");
-                    break;
-
-                    case "n":
-                    Console.WriteLine("A lista das tarefas cadastradas são: ");
-                    Console.WriteLine();
-                    Item.Listar();
-                    
-                    Console.WriteLine("Escolha uma opção:");
-                    Console.WriteLine("1. Marcar como concluída");
-                    Console.WriteLine("2. Excluir tarefa");
-                    Console.WriteLine("3. Sair");
-                    Console.Write("Opção: ");
-
-                    if (int.TryParse(Console.ReadLine(), out int escolha))
+                if (int.TryParse(Console.ReadLine(), out int escolha))
+                {
+                    switch (escolha)
                     {
-                        switch (escolha)
-                        {
-                            case 1:
-                                Console.Write("Informe o índice da tarefa a ser marcada como concluída: ");
-                                if (int.TryParse(Console.ReadLine(), out int indice))
-                                {
-                                    Item.MarcarComoConcluida(indice);
-                                    Item.Listar(); // Exibe a lista atualizada
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Índice inválido.");
-                                }
-                                break;
+                        case 1:
+                            Console.WriteLine();
+                            Console.WriteLine("Informe o título da tarefa:");
+                            item.titulo = Console.ReadLine();
 
-                            case 2:
-                                Console.Write("Informe o índice da tarefa a ser excluída: ");
-                                if (int.TryParse(Console.ReadLine(), out int indiceExclusao))
-                                {
-                                    Item.Excluir(indiceExclusao);
-                                    Item.Listar(); // Exibe a lista atualizada
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Índice inválido.");
-                                }
-                                break;
+                            Console.WriteLine("Informe descrição da tarefa:");
+                            item.descricao = Console.ReadLine();
 
-                            case 3:
-                                Console.WriteLine("Saindo do programa.");
-                                break;
+                            Console.WriteLine("Qual a data de vencimento da tarefa?");
+                            item.dataVencimento = DateTime.Parse(Console.ReadLine());
 
-                            default:
-                                Console.WriteLine("Opção inválida.");
-                                break;
+                            Item.Inserir(item);
+                            break;
+
+                        case 2:
+                            Console.WriteLine("A lista das tarefas cadastradas é:");
+                            Item.Listar();
+                            break;
+
+                        case 3:
+                            Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser marcada como concluída: ");
+                            if (int.TryParse(Console.ReadLine(), out int indice))
+                            {
+                                Item.MarcarComoConcluida(indice);
+                                Item.Listar(); 
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Opção inválida.");
-                        }
-                        break;
+                            else
+                            {
+                                Console.WriteLine("Índice inválido.");
+                            }
+                            break;
 
-                    default:
-                        Console.WriteLine("O valor inserido é inválido!");
-                    break;
+                        case 4:
+                            Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser excluída: ");
+                            if (int.TryParse(Console.ReadLine(), out int indiceExclusao))
+                            {
+                                Item.Excluir(indiceExclusao);
+                                Item.Listar(); 
+                            }
+                            else
+                            {
+                                Console.WriteLine("Índice inválido.");
+                            }
+                            break;
+
+                        case 5:
+                            Console.WriteLine("Saindo do programa.");
+                            break;
+
+                        default:
+                            Console.WriteLine("Opção inválida.");
+                            break;
+                    }
                 }
-                
-            } while (opcao == "s" || opcao == "n");
+                else
+                {
+                    Console.WriteLine("Opção inválida.");
+                }
+
+                Console.WriteLine("Deseja continuar: [s/n]");
+                opcao = Console.ReadLine();
+            } while (opcao.ToLower() == "s");
         }
     }
 }
