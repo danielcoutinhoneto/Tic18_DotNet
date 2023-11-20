@@ -18,12 +18,13 @@ namespace listaTarefas
 
                 Console.WriteLine("Escolha uma opção:");
                 Console.WriteLine("1. Cadastrar tarefa");
-                Console.WriteLine("2. Listar tarefas");
+                Console.WriteLine("2. Listar todas as tarefas");
                 Console.WriteLine("3. Listar tarefas concluídas");
                 Console.WriteLine("4. Listar tarefas não concluídas");
-                Console.WriteLine("5. Marcar como concluída");
-                Console.WriteLine("6. Excluir tarefa");
-                Console.WriteLine("7. Sair");
+                Console.WriteLine("5. Pesquisar por palavra-chave");
+                Console.WriteLine("6. Marcar como concluída");
+                Console.WriteLine("7. Excluir tarefa");
+                Console.WriteLine("8. Sair");
                 Console.WriteLine();
                 
                 Console.Write("Opção: ");
@@ -60,10 +61,16 @@ namespace listaTarefas
                         break;
 
                         case 5:
+                            Console.Write("Digite a palavra-chave para a pesquisa: ");
+                            string palavraChave = Console.ReadLine();
+                            Item.PesquisarPorPalavraChave(palavraChave);
+                        break;
+
+                        case 6:
                             Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser marcada como concluída: ");
-                            if (int.TryParse(Console.ReadLine(), out int indice))
+                            if (int.TryParse(Console.ReadLine(), out int indiceConclusao))
                             {
-                                Item.MarcarComoConcluida(indice);
+                                Item.MarcarComoConcluida(indiceConclusao);
                                 Item.Listar(); 
                             }
                             else
@@ -72,7 +79,7 @@ namespace listaTarefas
                             }
                             break;
 
-                        case 6:
+                        case 7:
                             Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser excluída: ");
                             if (int.TryParse(Console.ReadLine(), out int indiceExclusao))
                             {
@@ -85,7 +92,7 @@ namespace listaTarefas
                             }
                             break;
 
-                        case 7:
+                        case 8:
                             Console.WriteLine("Saindo do programa.");
                             break;
 
