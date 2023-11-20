@@ -37,75 +37,94 @@ namespace listaTarefas
                             Console.WriteLine();
                             Console.WriteLine("Informe o título da tarefa:");
                             item.titulo = Console.ReadLine();
+                            Console.WriteLine();
 
                             Console.WriteLine("Informe descrição da tarefa:");
                             item.descricao = Console.ReadLine();
+                            Console.WriteLine();
 
-                            Console.WriteLine("Qual a data de vencimento da tarefa?");
+                            Console.WriteLine("Qual a data de vencimento da tarefa? (Ex.: xx/xx/xxxx ou xx/xx/xx)");
                             item.dataVencimento = DateTime.Parse(Console.ReadLine());
+                            Console.WriteLine();
 
                             Item.Inserir(item);
+                            Console.WriteLine();
                         break;
 
                         case 2:
-                            Console.WriteLine("A lista das tarefas cadastradas é:");
+                            Console.WriteLine();
                             Item.Listar();
+                            Console.WriteLine();
                         break;
                         
                         case 3:
+                            Console.WriteLine();
                             Item.ListarConcluidas();
+                            Console.WriteLine();
                         break;
 
                         case 4:
+                            Console.WriteLine();
                             Item.ListarNaoConcluidas();
+                            Console.WriteLine();
                         break;
 
                         case 5:
-                            Console.Write("Digite a palavra-chave para a pesquisa: ");
+                            Console.WriteLine();
+                            Console.WriteLine("Digite a palavra-chave para pesquisa: ");
                             string palavraChave = Console.ReadLine();
                             Item.PesquisarPorPalavraChave(palavraChave);
+                            Console.WriteLine();
                         break;
 
                         case 6:
-                            Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser marcada como concluída: ");
+                            Console.WriteLine();
+                            Console.WriteLine("Informe o índice da tarefa a ser marcada como concluída: (Ex.: O indice inicia em 0...)");
                             if (int.TryParse(Console.ReadLine(), out int indiceConclusao))
                             {
                                 Item.MarcarComoConcluida(indiceConclusao);
                                 Item.Listar(); 
+                                Console.WriteLine();
                             }
                             else
                             {
                                 Console.WriteLine("Índice inválido.");
+                                Console.WriteLine();
                             }
-                            break;
+                        break;
 
                         case 7:
-                            Console.Write("Informe o índice(Ex.: inicia em 0...) da tarefa a ser excluída: ");
+                            Console.WriteLine();
+                            Console.WriteLine("Informe o índice da tarefa a ser excluída: (Ex.: O indice inicia em 0...)");
                             if (int.TryParse(Console.ReadLine(), out int indiceExclusao))
                             {
                                 Item.Excluir(indiceExclusao);
                                 Item.Listar(); 
+                                Console.WriteLine();
+
                             }
                             else
                             {
                                 Console.WriteLine("Índice inválido.");
+                                Console.WriteLine();
                             }
-                            break;
+                        break;
 
                         case 8:
                             Console.WriteLine("Saindo do programa.");
-                            break;
+                            Console.WriteLine();
+                        break;
 
                         default:
                             Console.WriteLine("Opção inválida.");
-                            break;
+                            Console.WriteLine();
+                        break;
                     }
                 }
                 else
                 {
                     Console.WriteLine("Opção inválida.");
                 }
-
                 Console.WriteLine("Deseja continuar: [s/n]");
                 opcao = Console.ReadLine();
             } while (opcao.ToLower() == "s");
