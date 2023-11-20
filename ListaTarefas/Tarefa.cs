@@ -112,4 +112,47 @@ public static class Item
             Console.WriteLine(new string('.', 185));
         }
     }
+
+    public static int NumeroTarefasConcluidas()
+    {
+        return tarefas.Count(tarefa => tarefa.concluida);
+    }
+
+    public static int NumeroTarefasPendentes()
+    {
+        return tarefas.Count(tarefa => !tarefa.concluida);
+    }
+
+    public static ItemTarefa TarefaMaisAntiga()
+    {
+        return tarefas.OrderBy(tarefa => tarefa.dataVencimento).FirstOrDefault();
+    }
+
+    public static ItemTarefa TarefaMaisRecente()
+    {
+        return tarefas.OrderByDescending(tarefa => tarefa.dataVencimento).FirstOrDefault();
+    }
+
+    public static void MostrarEstatisticas()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Estatísticas:");
+        Console.WriteLine(new string('=', 55));
+        Console.WriteLine();
+        Console.WriteLine($"Número de tarefas concluídas: {Item.NumeroTarefasConcluidas()}");
+        Console.WriteLine();
+        Console.WriteLine($"Número de tarefas pendentes: {Item.NumeroTarefasPendentes()}");
+
+        var tarefaMaisAntiga = Item.TarefaMaisAntiga();
+        var tarefaMaisRecente = Item.TarefaMaisRecente();
+
+        Console.WriteLine();
+        Console.Write("Tarefa mais antiga: ");
+        Console.WriteLine($"{tarefaMaisAntiga.titulo} - {tarefaMaisAntiga.dataVencimento.ToString("dd/MM/yyyy")}");
+
+        Console.WriteLine();
+        Console.Write("Tarefa mais recente: ");
+        Console.WriteLine($"{tarefaMaisRecente.titulo} - {tarefaMaisRecente.dataVencimento.ToString("dd/MM/yyyy")}");
+        Console.WriteLine();
+    }
 }

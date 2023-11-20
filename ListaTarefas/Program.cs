@@ -24,7 +24,8 @@ namespace listaTarefas
                 Console.WriteLine("5. Pesquisar por palavra-chave");
                 Console.WriteLine("6. Marcar como concluída");
                 Console.WriteLine("7. Excluir tarefa");
-                Console.WriteLine("8. Sair");
+                Console.WriteLine("8. Mostrar estatísticas");
+                Console.WriteLine("9. Sair");
                 Console.WriteLine();
                 
                 Console.Write("Opção: ");
@@ -111,6 +112,10 @@ namespace listaTarefas
                         break;
 
                         case 8:
+                            Item.MostrarEstatisticas();
+                        break;
+
+                        case 9:
                             Console.WriteLine("Saindo do programa.");
                             Console.WriteLine();
                         break;
