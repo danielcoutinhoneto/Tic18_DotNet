@@ -1,21 +1,18 @@
 ﻿using System;
-using CadEstoque;
 
 namespace CadEstoque
 {
-    class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
             string opcao;
 
-            Console.WriteLine("[SISTEMA DE GERENCIAMENTO DE ESTOQUE]");
-            Console.WriteLine("=====================================");
+            Console.WriteLine("[CADASTRO DE TAREFAS]");
+            Console.WriteLine("=====================");
             Console.WriteLine();
             do
             {
-                Produto item = new Produto();
-
                 Console.WriteLine("Escolha uma opção:");
                 Console.WriteLine();
                 Console.WriteLine("1. Cadastrar tarefa");
@@ -31,32 +28,8 @@ namespace CadEstoque
                     {
                         case 1:
                             Console.WriteLine();
-                            Console.WriteLine("Digite o código do Produto:");
-                            if (int.TryParse(Console.ReadLine(), out int codigo))
-                            {
-                                item.Codigo = codigo;
-                            }
-                            Console.WriteLine();
-
-                            Console.WriteLine("Digite o nome do Produto:");
-                            item.Nome = Console.ReadLine();
-                            Console.WriteLine();
-
-                            Console.WriteLine("Digite a Quantidade do Produto:");
-                            if (int.TryParse(Console.ReadLine(), out int quantidade))
-                            {
-                                item.Quantidade = quantidade;
-                            }
-                            Console.WriteLine();
-
-                            Console.WriteLine("Digite o Preço do Produto:");
-                            if (double.TryParse(Console.ReadLine(), out double preco))
-                            {
-                                item.Preco = preco;
-                            }
-                            Console.WriteLine();
-
-                            Estoque.CadastrarProduto(item);
+                            var produtoInfo = Estoque.SolicitarInformacoesProduto();
+                            Estoque.CadastrarProduto(produtoInfo);
                             Console.WriteLine();
                             break;
 
