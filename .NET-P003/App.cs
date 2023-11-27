@@ -50,6 +50,34 @@ namespace CadEstoque
             return (codigo, nome, quantidade, preco);
         }
 
+        public static void PesquisarPorPalavraChave(string palavraChave)
+        {
+            var resultados = ListaDeProdutos.Where(produto =>
+                produto.Nome?.Contains(palavraChave, StringComparison.OrdinalIgnoreCase) == true ||
+                produto.Quantidade.ToString().Contains(palavraChave, StringComparison.OrdinalIgnoreCase) == true ||
+                produto.Preco.ToString("C").Contains(palavraChave, StringComparison.OrdinalIgnoreCase) == true);
+
+            Console.WriteLine();
+            Console.WriteLine($"Resultados da pesquisa por '{palavraChave}':");
+            Console.WriteLine();
+
+            if(resultados.Any())
+            {
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", "Código", "Nome", "Quantidade", "Preço");
+                Console.WriteLine(new string('=', 83));
+
+                foreach (var produto in resultados)
+                {
+                    Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", produto.Codigo, produto.Nome, produto.Quantidade, produto.Preco.ToString("C"));
+                    Console.WriteLine(new string('.', 83));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Produto Não encontrado.");
+            }
+        }
+
         private static int SolicitarInteiro(string mensagem)
         {
             while (true)

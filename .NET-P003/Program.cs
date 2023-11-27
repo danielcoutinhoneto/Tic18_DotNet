@@ -17,7 +17,8 @@ namespace CadEstoque
                 Console.WriteLine();
                 Console.WriteLine("1. Cadastrar tarefa");
                 Console.WriteLine("2. Exibir Estoque");
-                Console.WriteLine("3. Sair");
+                Console.WriteLine("3. Pesquisar por palavra-chave");
+                Console.WriteLine("4. Sair");
                 Console.WriteLine();
 
                 Console.Write("Opção: ");
@@ -40,6 +41,17 @@ namespace CadEstoque
                             break;
 
                         case 3:
+                            Console.WriteLine();
+                            Console.WriteLine("Digite a palavra-chave para a pesquisa:");
+                            string palavraChave = Console.ReadLine();
+                            if (palavraChave != null)
+                            {
+                                Estoque.PesquisarPorPalavraChave(palavraChave);
+                            }
+                            Console.WriteLine();
+                            break;
+
+                        case 4:
                             Console.WriteLine("Saindo do programa.");
                             Console.WriteLine();
                             break;
