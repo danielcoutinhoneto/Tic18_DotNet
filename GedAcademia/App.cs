@@ -129,5 +129,81 @@ namespace GedAcademia
             return cliente.Peso / (alturaMetros * alturaMetros);
         }
 
+        public static void GerarRelatorioClientesOrdemAlfabetica()
+        {
+            Console.WriteLine("\nClientes Cadastrados em Ordem Alfabética:");
+
+            var clientesOrdenados = GestaoClientesTreinadores.ListaDeClientes.OrderBy(cliente => cliente.Nome);
+
+            foreach (var cliente in clientesOrdenados)
+            {
+                Console.WriteLine($"Nome: {cliente.Nome}, CPF: {cliente.CPF}, Data de Nascimento: {cliente.DataNasc}, Altura: {cliente.Altura}, Peso: {cliente.Peso}");
+            }
+        }
+
+        public static void RelIdadeClientesOrdenados()
+        {
+            // Ordenar os clientes pelo mais velho para o mais novo
+            var clientesOrdenados = ListaDeClientes.OrderByDescending(cliente => cliente.DataNasc);
+
+            // Print column headers with fixed width
+            Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", "Nome", "Data de Nascimento", "Altura", "Peso");
+
+            // Print a line of equal signs as a separator
+            Console.WriteLine(new string('=', 83));
+
+            Console.WriteLine($"Clientes ordenados do mais velho para o mais novo:");
+
+            foreach (var cliente in clientesOrdenados)
+            {
+                // Print information about each cliente with fixed width
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", cliente.Nome, cliente.DataNasc.ToString("dd/MM/yyyy"), cliente.Altura, cliente.Peso);
+                Console.WriteLine(new string('.', 83));
+            }
+        }
+
+        public static void RelAniversariantesPorMes()
+        {
+            for (int mes = 1; mes <= 12; mes++)
+            {
+                DateTime dataAtual = DateTime.Now;
+
+                var treinadoresAniversariantes = ListaDeTreinadores
+                    .Where(treinador => treinador.DataNasc.Month == mes)
+                    .OrderBy(treinador => treinador.DataNasc.Day);
+
+                var clientesAniversariantes = ListaDeClientes
+                    .Where(cliente => cliente.DataNasc.Month == mes)
+                    .OrderBy(cliente => cliente.DataNasc.Day);
+
+                // Imprimir apenas se houver aniversariantes
+                if (treinadoresAniversariantes.Any() || clientesAniversariantes.Any())
+                {
+                    // Print column headers with fixed width
+                    Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Nome", "Data de Nascimento", "Tipo");
+
+                    // Print a line of equal signs as a separator
+                    Console.WriteLine(new string('=', 63));
+
+                    Console.WriteLine($"Aniversariantes do mês {mes}:");
+
+                    // Exibir treinadores aniversariantes
+                    Console.WriteLine("\nTreinadores:");
+                    foreach (var treinador in treinadoresAniversariantes)
+                    {
+                        Console.WriteLine("{0,-20} {1,-20} {2,-20}", treinador.Nome, treinador.DataNasc.ToString("dd/MM/yyyy"), "Treinador");
+                    }
+
+                    // Exibir clientes aniversariantes
+                    Console.WriteLine("\nClientes:");
+                    foreach (var cliente in clientesAniversariantes)
+                    {
+                        Console.WriteLine("{0,-20} {1,-20} {2,-20}", cliente.Nome, cliente.DataNasc.ToString("dd/MM/yyyy"), "Cliente");
+                    }
+
+                    Console.WriteLine(); // Adicionar uma linha em branco entre os meses
+                }
+            }
+        }
     }
 }

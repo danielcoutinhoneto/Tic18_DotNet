@@ -46,6 +46,22 @@ namespace GedAcademia
             // Exemplo de relatório de clientes com IMC maior que 25.0
             Console.WriteLine("\nRelatório de Clientes com IMC maior que 25.0:");
             GestaoClientesTreinadores.RelatorioClientesIMC(25.0);
+
+            // Chamar o método para gerar o relatório de clientes em ordem alfabética
+            GestaoClientesTreinadores.GerarRelatorioClientesOrdemAlfabetica();
+
+            // Exibição de clientes
+            Console.WriteLine("\nClientes Cadastrados:");
+            foreach (var cliente in GestaoClientesTreinadores.ListaDeClientes)
+            {
+                Console.WriteLine($"Nome: {cliente.Nome}, CPF: {cliente.CPF}, Data de Nascimento: {cliente.DataNasc}, Altura: {cliente.Altura}, Peso: {cliente.Peso}");
+            }
+
+            // Relatório de idade dos clientes ordenados
+            GestaoClientesTreinadores.RelIdadeClientesOrdenados();
+            
+            // Exemplo de chamada para gerar relatório de aniversariantes de todos os meses
+            GestaoClientesTreinadores.RelAniversariantesPorMes();
         }
     }
 }
