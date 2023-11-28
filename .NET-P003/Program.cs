@@ -18,7 +18,8 @@ namespace CadEstoque
                 Console.WriteLine("1. Cadastrar tarefa");
                 Console.WriteLine("2. Exibir Estoque");
                 Console.WriteLine("3. Pesquisar por palavra-chave");
-                Console.WriteLine("4. Sair");
+                Console.WriteLine("4 -Saída de Produto");
+                Console.WriteLine("0. Sair");
                 Console.WriteLine();
 
                 Console.Write("Opção: ");
@@ -52,6 +53,14 @@ namespace CadEstoque
                             break;
 
                         case 4:
+                            Console.WriteLine("Digite o código ou nome do produto para dar baixa:");
+                            string codigoOuNome = Console.ReadLine();
+                            int quantidadeBaixa = Estoque.SolicitarInteiro("Digite a quantidade para dar baixa:");
+
+                            Estoque.SaidaEstoque(codigoOuNome, quantidadeBaixa);
+                        break;
+
+                        case 0:
                             Console.WriteLine("Saindo do programa.");
                             Console.WriteLine();
                             break;

@@ -22,6 +22,35 @@ namespace CadEstoque
             Console.WriteLine("\nProduto cadastrado com sucesso!");
         }
 
+        public static void SaidaEstoque(string codigoOuNome, int quantidade)
+        {
+             Produto produto = null;
+
+            if (int.TryParse(codigoOuNome, out int codigo))
+            {
+                // Se a entrada puder ser convertida para um número, consideramos como código.
+                produto = ListaDeProdutos.Find(p => p.Codigo == codigo);
+            }
+            else
+            {
+                // Caso contrário, consideramos como nome.
+                produto = ListaDeProdutos.Find(p => p.Nome.Equals(codigoOuNome, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (produto != null && produto.Quantidade >= quantidade)
+            {
+                produto.Quantidade -= quantidade;
+                Console.WriteLine($"Saída de {quantidade} unidades do produto {produto.Nome} realizada com sucesso. Estoque atualizado.");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Produto não encontrado ou quantidade insuficiente em estoque para dar baixa.");
+                Console.WriteLine();
+            }
+        }
+
         public static void ExibirEstoque()
         {
             Console.WriteLine("\nEstoque:");
@@ -49,6 +78,7 @@ namespace CadEstoque
 
             return (codigo, nome, quantidade, preco);
         }
+        
 
         public static void PesquisarPorPalavraChave(string palavraChave)
         {
@@ -78,7 +108,7 @@ namespace CadEstoque
             }
         }
 
-        private static int SolicitarInteiro(string mensagem)
+        internal static int SolicitarInteiro(string mensagem)
         {
             while (true)
             {
