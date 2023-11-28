@@ -28,18 +28,25 @@ namespace CadEstoque
 
             if (int.TryParse(codigoOuNome, out int codigo))
             {
-                // Se a entrada puder ser convertida para um número, consideramos como código.
                 produto = ListaDeProdutos.Find(p => p.Codigo == codigo);
             }
             else
             {
-                // Caso contrário, consideramos como nome.
                 produto = ListaDeProdutos.Find(p => p.Nome.Equals(codigoOuNome, StringComparison.OrdinalIgnoreCase));
             }
 
             if (produto != null && produto.Quantidade >= quantidade)
             {
                 produto.Quantidade -= quantidade;
+
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", "Código", "Nome", "Quantidade", "Preço");
+
+                Console.WriteLine(new string('=', 83));
+
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", produto.Codigo, produto.Nome, produto.Quantidade, produto.Preco.ToString("C"));
+                Console.WriteLine(new string('.', 83));
+
+                Console.WriteLine();
                 Console.WriteLine($"Saída de {quantidade} unidades do produto {produto.Nome} realizada com sucesso. Estoque atualizado.");
                 Console.WriteLine();
             }
@@ -53,11 +60,14 @@ namespace CadEstoque
 
         public static void ExibirEstoque()
         {
-            Console.WriteLine("\nEstoque:");
+            Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", "Código", "Nome", "Quantidade", "Preço");
+
+            Console.WriteLine(new string('=', 83));
 
             foreach (var produto in ListaDeProdutos)
             {
-                Console.WriteLine($"Código: {produto.Codigo}, Nome: {produto.Nome}, Quantidade: {produto.Quantidade}, Preço: {produto.Preco:C}");
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20}", produto.Codigo, produto.Nome, produto.Quantidade, produto.Preco.ToString("C"));
+                Console.WriteLine(new string('.', 83));
             }
         }
 
@@ -143,5 +153,69 @@ namespace CadEstoque
                 }
             }
         }
+
+        public static void RelQuantAbxLimite(int limite)
+        {
+            var produtosAbaixoLimite = ListaDeProdutos.Where(produto => produto.Quantidade < limite);
+
+            // Print column headers with fixed width
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Código", "Nome", "Quantidade");
+
+            // Print a line of equal signs as a separator
+            Console.WriteLine(new string('=', 63));
+
+            Console.WriteLine($"Produtos com quantidade abaixo de {limite}:");
+
+            foreach (var produto in produtosAbaixoLimite)
+            {
+                // Print information about each product with fixed width
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", produto.Codigo, produto.Nome, produto.Quantidade);
+                Console.WriteLine(new string('.', 83));
+            }
+        }
+
+        public static void RelValorEntreMinMax(double valorMinimo, double valorMaximo)
+        {
+            var produtosEntreMinMax = ListaDeProdutos.Where(produto => produto.Preco >= valorMinimo && produto.Preco <= valorMaximo);
+
+            // Print column headers with fixed width
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Código", "Nome", "Preço");
+
+            // Print a line of equal signs as a separator
+            Console.WriteLine(new string('=', 63));
+
+            Console.WriteLine($"Produtos com valor entre {valorMinimo:C} e {valorMaximo:C}:");
+
+            foreach (var produto in produtosEntreMinMax)
+            {
+                // Print information about each product with fixed width
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", produto.Codigo, produto.Nome, produto.Preco.ToString("C"));
+                Console.WriteLine(new string('.', 83));
+            }
+        }
+
+        public static void RelValorTotalEstoque()
+        {
+           
+            double valorTotalEstoque = ListaDeProdutos.Sum(produto => produto.Quantidade * produto.Preco);
+            
+            Console.WriteLine();
+            Console.WriteLine($"Valor total do estoque: {valorTotalEstoque:C}");
+
+            Console.WriteLine("Valor total de cada produto de acordo com o estoque:");
+            Console.WriteLine();
+
+            Console.WriteLine("{0,-20} {1,-20} {2,-20}", "Código", "Nome", "Valor Total");
+            Console.WriteLine(new string('=', 63));
+
+            foreach (var produto in ListaDeProdutos)
+            {
+                double valorTotalProduto = produto.Quantidade * produto.Preco;
+                // Print information about each product with fixed width
+                Console.WriteLine("{0,-20} {1,-20} {2,-20}", produto.Codigo, produto.Nome, valorTotalProduto.ToString("C"));
+                Console.WriteLine(new string('.', 63));
+            }
+        }
+
     }
 }
