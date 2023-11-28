@@ -1,9 +1,9 @@
 # Residência em Tecnologia da Informação e Comunicação
 
 - MÓDULO .NB – Formação .Net - Básico
-- Atividade Prática NET-P003 (SISTEMA DE GESTÃO DE ESTOQUE)
+- Avaliação Prática NET-P003 (SISTEMA DE GESTÃO DE ACADEMIAS)
 
 
-### | Repositório para a disciplina de .NET, semana - 3. 
+### | Repositório para a disciplina de .NET, Av-Pratica. 
 
 
